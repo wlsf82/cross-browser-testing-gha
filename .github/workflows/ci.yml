@@ -1,0 +1,38 @@
+name: End-to-end tests 🧪
+on:
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: "Browser to run tests"
+        type: choice
+        required: true
+        default: chrome
+        options:
+          - chrome
+          - edge
+          - electron
+          - firefox
+          - safari
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install WebKit system deps (Safari)
+        if: ${{ github.event.inputs.browser == 'safari' }}
+        run: npx playwright install-deps webkit
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run test:${{ github.event.inputs.browser }}
+
+      - name: Upload screenshots (selected browser, on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-${{ github.event.inputs.browser }}
+          path: cypress/screenshots
+          if-no-files-found: ignore

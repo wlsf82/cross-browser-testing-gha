@@ -1,0 +1,28 @@
+{
+  "name": "cross-browser-testing-gha",
+  "version": "1.0.0",
+  "description": "Sample project to demonstrate how to create a GitHub Actions workflow that allows selecting in which browser the tests will run and trigger it manually.",
+  "main": "cypress.config.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "test:all:browsers": "npm run test:chrome && npm run test:edge && npm run test:electron && npm run test:firefox && npm run test:safari",
+    "test:chrome": "cypress run --browser chrome",
+    "test:edge": "cypress run --browser edge",
+    "test:electron": "cypress run",
+    "test:firefox": "cypress run --browser firefox",
+    "test:safari": "cypress run --browser webkit"
+  },
+  "keywords": [
+    "github-actions",
+    "cypress",
+    "cross-browser-testing",
+    "workflow-dispatch"
+  ],
+  "author": "Walmyr <wlsf82@gmail.com> (https://walmyr.dev/)",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.8.0",
+    "playwright-webkit": "^1.57.0"
+  }
+}
