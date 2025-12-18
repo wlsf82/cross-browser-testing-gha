@@ -22,7 +22,7 @@
   "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
-    "cypress": "^15.8.0",
+    "cypress": "^15.8.1",
     "playwright-webkit": "^1.57.0"
   }
 }
