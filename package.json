@@ -5,6 +5,7 @@
   "main": "cypress.config.js",
   "scripts": {
     "cy:open": "cypress open",
+    "test": "npm run test:all:browsers",
     "test:all:browsers": "npm run test:chrome && npm run test:edge && npm run test:electron && npm run test:firefox && npm run test:safari",
     "test:chrome": "cypress run --browser chrome",
     "test:edge": "cypress run --browser edge",
